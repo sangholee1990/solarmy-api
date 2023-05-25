@@ -1,0 +1,38 @@
+#spring
+spring:
+   profiles:
+      active: solarmy
+   
+   devtools:
+      restart:
+         enabled: true
+
+#mybatis
+mybatis:
+   mapper-locations: /mapper/**/*.xml
+   configuration:
+      map-underscore-to-camel-case: true
+      call-setters-on-nulls: true
+
+#log
+logging:
+   file: 
+      path: logs/
+
+---
+#솔라미
+spring:
+   config.activate.on-profile: solarmy
+   datasource:
+      #url: jdbc:mysql://db-bms6h-kr.vpc-pub-cdb.ntruss.com:3306/DMS05?serverTimezone=UTC&characterEncoding=UTF-8
+      url: jdbc:mysql://211.227.85.209:3306/DMS05?serverTimezone=UTC&characterEncoding=UTF-8
+      username: dms02user01
+      #password: bdwide365!@
+      password: devel!
+      
+resources:
+   location: /home/solarmy/files/
+   uri_path: /files
+
+server: 
+   port: 9999

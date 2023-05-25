@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<springProperty name="filePath" source="logging.file.path"/>
+	<property name="defaultPattern" value="[%d{HH:mm:ss.SSS}] [%-5level] [%logger.%method:%line] - %msg%n"/>
+	<property name="levelConsole" value="error"/>
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>${defaultPattern}</Pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
+
+	<appender name="APP_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${filePath}/app.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${filePath}/app.log.%d{yyyy-MM-dd}.%i</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>1GB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<!-- <pattern>%d{HH:mm:ss.SSS} [%thread] [%highlight(%-5level)] %logger{36} - %msg%n</pattern> -->
+			<Pattern>${defaultPattern}</Pattern>
+		</encoder>
+	</appender>
+
+	<!-- Root Logger -->
+    <root level="${levelConsole}">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="APP_FILE"/>
+    </root>
+</configuration>
