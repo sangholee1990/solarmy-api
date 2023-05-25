@@ -44,7 +44,7 @@ public class MainController extends MandatoryParamCheck {
 	
 	private final String REQHEADER = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2FjY291bnQiOjI0fQ.pXluG0rOyeoO8xSvAFYCOrkIaYofUkUR3dIijJOT6xg";
 	private static final Logger log = LoggerFactory.getLogger(MainController.class);
-	
+	 
 	@ApiOperation(value = "회원정보 조회", notes = "특정 조건에 맞는 정보를 조회합니다.")
 	@GetMapping(value = "/api/sel-member")
 	//public ResponseEntity<?> selMember(HttpServletRequest request, @ModelAttribute MemberVO vo) throws Exception{
