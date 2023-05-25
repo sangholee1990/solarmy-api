@@ -63,7 +63,14 @@ public class MainController extends MandatoryParamCheck {
 			if(ret != null) {return new ResponseEntity<String>(ret, HttpStatus.OK);}
 			
 			ret = main_dao.selMember(vo);
-			return new ResponseEntity<String>(ret,  HttpStatus.OK);
+			JSONObject returnObj = new JSONObject();
+			returnObj.put("success", "Y");
+			returnObj.put("success", "Y");
+			returnObj.put("success", "Y");
+			returnObj.put("success", "Y");
+			returnObj.put("success", "Y");
+			returnObj.put("success", "Y");
+			return new ResponseEntity<String>(returnObj.toString(),  HttpStatus.OK);
 			
 			/*
 			SampleResponse response = new SampleResponse();
