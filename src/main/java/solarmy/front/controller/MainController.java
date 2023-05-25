@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.swagger.annotations.ApiOperation;
+import solarmy.front.common.JsonUtil;
 import solarmy.front.common.MandatoryParamCheck;
 import solarmy.front.common.SolarmyException;
 import solarmy.front.model.MainDAO;
@@ -49,7 +50,6 @@ public class MainController extends MandatoryParamCheck {
 	 
 	@ApiOperation(value = "회원정보 조회", notes = "특정 조건에 맞는 정보를 조회합니다.")
 	@GetMapping(value = "/api/sel-member-test")
-	//public ResponseEntity<?> selMember(HttpServletRequest request, @ModelAttribute MemberVO vo) throws Exception{
 	public ResponseEntity<String> selMember_test(HttpServletRequest request, @ModelAttribute MemberVO vo) throws Exception{
 		String ret = null;
 		String reqUrl = request.getRequestURL().toString();;
@@ -74,7 +74,7 @@ public class MainController extends MandatoryParamCheck {
 			Obj2.put("list", retObj);
 			
 			Obj3.put("srv", reqUrl);
-			Obj3.put("var", vo.toString());
+			Obj3.put("var", JsonUtil.getParamMap(sKey, requestBody));
 			
 			Obj1.put("code", "00");
 			Obj1.put("data", Obj2);
