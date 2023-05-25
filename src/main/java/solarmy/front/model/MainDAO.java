@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 
 import solarmy.front.common.JsonUtil;
@@ -22,20 +23,22 @@ import solarmy.front.vo.TermsCondVO;
 public class MainDAO {
 
 	private final SqlSession sqlSession;
-	private String NS;
 	private Map<String, Object> data;
 
 	public MainDAO(SqlSession sqlSession) {
-		NS = this.getClass().getSimpleName() + ".";
 		this.sqlSession = sqlSession;
 	}
 	
-	//public List<Map> selMember(MemberVO vo) {
-	public String selMember(MemberVO vo) throws JSONException {
-		List<Map<String, Object>> data = sqlSession.selectList("selMember", vo);
-		return JsonUtil.convertListToJson(data);
+	public Map<String, Object> selMemberTest(MemberVO vo) throws JSONException {
+		Map<String, Object> data = sqlSession.selectOne("selMember", vo);
+		return data;
 	}
 	
+	public List<Map> selMember(MemberVO vo) {
+		List<Map> data = sqlSession.selectList("selMember", vo);
+		return data;
+	}
+
 	public int insMember(MemberVO vo) {
 		return sqlSession.insert("insMember", vo);
 	}

@@ -3,7 +3,7 @@
 <mapper namespace="MainDAO">
 	<select id="selMember" parameterType="hashmap" resultType="hashmap">
 		SELECT * FROM TB_MEMBER
-		WHERE CUSTOMER_LINK_NUMBER = #{customer_link_number}	
+		WHERE CUSTOMER_LINK_NUMBER = #{customer_link_number} AND SNS_ID = #{sns_id}	
 	</select>
 	
 	<insert id="insMember" parameterType="hashmap">

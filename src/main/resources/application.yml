@@ -24,11 +24,13 @@ logging:
 spring:
    config.activate.on-profile: solarmy
    datasource:
-      #url: jdbc:mysql://db-bms6h-kr.vpc-pub-cdb.ntruss.com:3306/DMS05?serverTimezone=UTC&characterEncoding=UTF-8
-      url: jdbc:mysql://211.227.85.209:3306/DMS05?serverTimezone=UTC&characterEncoding=UTF-8
-      username: dms02user01
-      #password: bdwide365!@
-      password: devel!
+      #url: jdbc:mysql://211.227.85.209:3306/DMS05?serverTimezone=UTC&characterEncoding=UTF-8
+      #username: dms02user01
+      #password: devel!
+      #url: jdbc:mysql://localhost:3306/DMS02?serverTimezone=UTC&characterEncoding=UTF-8
+      url: jdbc:mysql://223.130.134.136:3306/DMS02?serverTimezone=UTC&characterEncoding=UTF-8
+      username: bdwide
+      password: Bdwide365!@
       
 resources:
    location: /home/solarmy/files/

@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import io.swagger.annotations.ApiOperation;
 import solarmy.front.common.MandatoryParamCheck;
 import solarmy.front.common.SolarmyException;
@@ -46,9 +48,9 @@ public class MainController extends MandatoryParamCheck {
 	private static final Logger log = LoggerFactory.getLogger(MainController.class);
 	 
 	@ApiOperation(value = "회원정보 조회", notes = "특정 조건에 맞는 정보를 조회합니다.")
-	@GetMapping(value = "/api/sel-member")
+	@GetMapping(value = "/api/sel-member-test")
 	//public ResponseEntity<?> selMember(HttpServletRequest request, @ModelAttribute MemberVO vo) throws Exception{
-	public ResponseEntity<String> selMember(HttpServletRequest request, @ModelAttribute MemberVO vo) throws Exception{
+	public ResponseEntity<String> selMember_test(HttpServletRequest request, @ModelAttribute MemberVO vo) throws Exception{
 		String ret = null;
 		String reqUrl = request.getRequestURL().toString();;
 		try {
@@ -58,23 +60,41 @@ public class MainController extends MandatoryParamCheck {
 			if(ret != null) {return new ResponseEntity<String>(ret, HttpStatus.OK);}
 			
 			JSONObject requestBody = new JSONObject(vo);
-			String[] sKey = {"customer_link_number","sns_key"};
+			String[] sKey = {"customer_link_number","sns_id"};
 			ret = this.isParamCheck(reqUrl, sKey, requestBody);
 			if(ret != null) {return new ResponseEntity<String>(ret, HttpStatus.OK);}
 			
-			ret = main_dao.selMember(vo);
-			JSONObject returnObj = new JSONObject();
-			returnObj.put("success", "Y");
-			returnObj.put("success", "Y");
-			returnObj.put("success", "Y");
-			returnObj.put("success", "Y");
-			returnObj.put("success", "Y");
-			returnObj.put("success", "Y");
-			return new ResponseEntity<String>(returnObj.toString(),  HttpStatus.OK);
+			Map<String, Object> retObj = main_dao.selMemberTest(vo);
 			
-			/*
+			JSONObject Obj1 = new JSONObject();
+			JSONObject Obj2 = new JSONObject();
+			JSONObject Obj3 = new JSONObject();
+			
+			Obj2.put("cnt", retObj == null ? 0 : 1);
+			Obj2.put("list", retObj);
+			
+			Obj3.put("srv", reqUrl);
+			Obj3.put("var", vo.toString());
+			
+			Obj1.put("code", "00");
+			Obj1.put("data", Obj2);
+			Obj1.put("req", Obj3);
+			
+			return new ResponseEntity<String>(Obj1.toString(),  HttpStatus.OK);
+			
+		}catch (MyBatisSystemException e) {
+			return new ResponseEntity<String>(SolarmyException.systemError(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@ApiOperation(value = "회원정보 조회", notes = "특정 조건에 맞는 정보를 조회합니다.")
+	@GetMapping(value = "/api/sel-member")
+	public ResponseEntity<?> selMember(HttpServletRequest request, @ModelAttribute MemberVO vo) throws Exception {
+		List<Map> obj = null;
+		String code = "00";
+		try {
 			SampleResponse response = new SampleResponse();
-			
+			String header = request.getHeader("Authorization") == null ? "" : request.getHeader("Authorization");
 			
 			if(!header.equals(REQHEADER)) {
 				code = "30";
@@ -92,20 +112,22 @@ public class MainController extends MandatoryParamCheck {
 			data.setList(obj);
 			
 			ReqVO req = new ReqVO();
-			req.setSrv(reqUrl);
+			req.setSrv(request.getRequestURL().toString());
 			req.setVar(vo);
 			
 			response.setCode(code);
 			response.setData(data);
 			response.setReq(req);
 			
-			//return ResponseEntity.ok(response);
-			 
-			 
-			return new ResponseEntity<>(response,  HttpStatus.OK);
-			*/
+			return ResponseEntity.ok(response);
+		}catch(NullPointerException  e) {
+			ErrorVO err = new ErrorVO();
+			err.setCode(code);
+			return ResponseEntity.ok(err);
 		}catch (MyBatisSystemException e) {
-			return new ResponseEntity<String>(SolarmyException.systemError(), HttpStatus.INTERNAL_SERVER_ERROR);
+			ErrorVO err = new ErrorVO();
+			err.setCode("02");
+			return ResponseEntity.ok(err);
 		}
 	}
 	
