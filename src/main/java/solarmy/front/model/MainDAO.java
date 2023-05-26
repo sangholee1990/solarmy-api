@@ -3,18 +3,7 @@ package solarmy.front.model;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
-import org.json.JSONException;
 import org.springframework.stereotype.Component;
-
-import solarmy.front.vo.InputDataVO;
-import solarmy.front.vo.IotPrdctAuthVO;
-import solarmy.front.vo.KepcoApiAuthVO;
-import solarmy.front.vo.MemberVO;
-import solarmy.front.vo.MsgInfoVO;
-import solarmy.front.vo.OutputDataVO;
-import solarmy.front.vo.OutputStatDataVO;
-import solarmy.front.vo.SysInfoVO;
-import solarmy.front.vo.TermsCondVO;
 
 @Component
 public class MainDAO {

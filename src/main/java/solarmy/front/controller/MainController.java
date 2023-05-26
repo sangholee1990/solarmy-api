@@ -10,11 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.ApiOperation;
@@ -22,15 +20,6 @@ import solarmy.front.common.JsonUtil;
 import solarmy.front.common.MandatoryParamCheck;
 import solarmy.front.common.SolarmyException;
 import solarmy.front.model.MainDAO;
-import solarmy.front.vo.InputDataVO;
-import solarmy.front.vo.IotPrdctAuthVO;
-import solarmy.front.vo.KepcoApiAuthVO;
-import solarmy.front.vo.MemberVO;
-import solarmy.front.vo.MsgInfoVO;
-import solarmy.front.vo.OutputDataVO;
-import solarmy.front.vo.OutputStatDataVO;
-import solarmy.front.vo.SysInfoVO;
-import solarmy.front.vo.TermsCondVO;
 
 @RestController
 public class MainController extends MandatoryParamCheck {

@@ -3,8 +3,6 @@ package solarmy.front.common;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.google.gson.Gson;
-
 public class SolarmyException extends Exception{
 	
 	private String messageCode = "";
