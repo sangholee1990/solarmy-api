@@ -3,8 +3,134 @@
 <mapper namespace="MainDAO">
 	<select id="selMember" parameterType="hashmap" resultType="hashmap">
 		SELECT * FROM TB_MEMBER
-		WHERE CUSTOMER_LINK_NUMBER = #{customer_link_number} AND SNS_ID = #{sns_id}	
+		WHERE CUSTOMER_LINK_NUMBER = #{customer_link_number} AND SNS_KEY = #{sns_key}	
 	</select>
+	
+	<select id="selIotProdtAuth" parameterType="hashmap" resultType="hashmap">
+		SELECT * FROM TB_IOT_PRDCT_AUTH
+		WHERE PRODUCT_SERIAL_NUMBER = #{product_serial_number}
+	</select>
+	
+	<select id="selInputData" parameterType="hashmap" resultType="hashmap">
+	SELECT * FROM TB_INPUT_DATA_2023
+	WHERE PRODUCT_SERIAL_NUMBER = #{product_serial_number} AND DATE_TIME=CONCAT(#{date},' ',#{time})
+	</select>
+	
+	<select id="selOutputData" parameterType="hashmap" resultType="hashmap">
+		SELECT * FROM TB_OUTPUT_DATA_2023
+		WHERE CUSTOMER_LINK_NUMBER = #{customer_link_number} AND DATE_TIME=CONCAT(#{date},' ',#{time})
+	</select>
+	
+	<select id="selOutputStatData" parameterType="hashmap" resultType="hashmap">
+		SELECT * FROM TB_OUTPUT_STAT_DATA_2023
+		WHERE CUSTOMER_LINK_NUMBER = #{customer_link_number} AND DATE_TIME=CONCAT(#{date},' ',#{time})
+	</select>
+	
+	<select id="selKepProdtAuth" parameterType="hashmap" resultType="hashmap">
+		SELECT * FROM TB_KEPCO_API_AUTH
+		WHERE KEPCO_API_KEY = #{kepco_api_key}
+	</select>
+	
+	<select id="selMsgInfo" parameterType="hashmap" resultType="hashmap">
+		SELECT * FROM TB_MSG_INFO
+		WHERE MSG_CODE = #{msg_code}
+	</select>
+	
+	<select id="selSysInfo" parameterType="hashmap" resultType="hashmap">
+		SELECT * FROM TB_SYS_INFO
+		WHERE CUSTOMER_LINK_NUMBER = #{customer_link_number}	
+	</select>
+	
+	<insert id="insKepProdtAuth" parameterType="hashmap">
+		INSERT INTO TB_KEPCO_API_AUTH
+		SET KEPCO_API_KEY = #{kepco_api_key}
+			<if test="auth_yn != null and auth_yn != ''">
+				, AUTH_YN = #{auth_yn}
+			</if>
+				, MOD_DATE = NOW()
+				, REG_DATE = NOW()
+	</insert>
+	
+	<insert id="insTermsCond" parameterType="hashmap">
+		INSERT INTO TB_TERMS_COND
+		SET TERMS_CODE = #{terms_code}
+			,TERMS_VERSION = #{terms_version}
+		<if test="customer_link_number != null and customer_link_number != ''">
+			,CUSTOMER_LINK_NUMBER = #{customer_link_number}
+		</if>
+		<if test="terms_cont != null and terms_cont != ''">	
+			,TERMS_CONT = #{TERMS_CONT}
+		</if>
+		<if test="agrtr_cndtn_yn != null and agrtr_cndtn_yn != ''">	
+			,AGRTR_CNDTN_YN = #{AGRTR_CNDTN_YN}
+		</if>
+		<if test="use_yn != null and use_yn != ''">	
+			,USE_YN = #{USE_YN}
+		</if>	
+			,MOD_DATE = NOW()	
+			,REG_DATE = NOW()
+	</insert>
+	
+	<insert id="insSysInfo" parameterType="hashmap">
+		INSERT INTO TB_SYS_INFO SET
+				CUSTOMER_LINK_NUMBER = #{customer_link_number}	
+			<if test="pwr_svn_trg != null">
+				, PWR_SVN_TRG = #{pwr_svn_trg}	
+			</if>
+			<if test="gas_svn_trg != null">
+				, GAS_SVN_TRG = #{gas_svn_trg}	
+			</if>
+			<if test="wtr_svn_trg != null">
+				, WTR_SVN_TRG = #{wtr_svn_trg}	
+			</if>
+			<if test="alarm_use_yn != null and alarm_use_yn != ''">
+				, ALARM_USE_YN = #{alarm_use_yn}	
+			</if>
+			<if test="alarm_sound_yn != null and use_yn != ''">
+				, ALARM_SOUND_YN = #{alarm_sound_yn}	
+			</if>
+			<if test="alarm_vbrtn_yn != null and alarm_vbrtn_yn != ''">
+				, ALARM_VBRTN_YN = #{alarm_vbrtn_yn}	
+			</if>
+			<if test="alarm_optm_yn != null and alarm_optm_yn != ''">
+				, ALARM_OPTM_YN = #{alarm_optm_yn}	
+			</if>
+			<if test="use_yn != null and use_yn != ''">
+				, USE_YN = #{use_yn}	
+			</if>
+			<if test="tmp != null">
+				, TMP = #{tmp}	
+			</if>
+			<if test="tmp2 != null">
+				, TMP2 = #{tmp2}	
+			</if>
+			<if test="tmp3 != null">
+				, TMP3 = #{tmp3}	
+			</if>
+			<if test="tmp4 != null">
+				, TMP4 = #{tmp4}	
+			</if>
+			<if test="tmp5 != null">
+				, TMP5 = #{tmp5}	
+			</if>
+			<if test="tmp6 != null and tmp6 != ''">
+				, TMP6 = #{tmp6}	
+			</if>
+			<if test="tmp7 != null and tmp7 != ''">
+				, TMP7 = #{tmp7}	
+			</if>
+			<if test="tmp8 != null and tmp8 != ''">
+				, TMP8 = #{tmp8}	
+			</if>
+			<if test="tmp9 != null and tmp9 != ''">
+				, TMP9 = #{tmp9}
+			</if>
+			<if test="tmp10 != null and tmp10 != ''">
+				, TMP10 = #{tmp10}
+			</if>
+			, REG_DATE = NOW()	
+			, MOD_DATE = NOW()
+	</insert>
 	
 	<insert id="insMember" parameterType="hashmap">
 		INSERT INTO TB_MEMBER
@@ -90,6 +216,19 @@
 				,REG_DATE = NOW()
 	</insert>
 	
+	<insert id="insIotProdtAuth" parameterType="hashmap">
+		INSERT INTO TB_IOT_PRDCT_AUTH
+		SET PRODUCT_SERIAL_NUMBER = #{product_serial_number}
+			<if test="auth_yn != null and auth_yn != ''">
+				, AUTH_YN = #{auth_yn}
+			</if>
+			<if test="use_yn != null and use_yn != ''">
+				, USE_YN = #{use_yn}
+			</if>
+				, MOD_DATE = NOW()
+				, REG_DATE = NOW()
+	</insert>
+	
 	<update id="updMember" parameterType="hashmap">
 		UPDATE TB_MEMBER
 		SET	MOD_DATE = NOW()
@@ -171,71 +310,8 @@
 		<if test="use_yn != null and use_yn != ''">
 			,USE_YN = #{use_yn}	
 		</if>
-		WHERE CUSTOMER_LINK_NUMBER = #{customer_link_number}
+		WHERE CUSTOMER_LINK_NUMBER = #{customer_link_number} AND DATE_TIME=CONCAT(#{date},' ',#{time}) 
 	</update>
-	
-	<select id="selIotProdtAuth" parameterType="hashmap" resultType="hashmap">
-		SELECT * FROM TB_IOT_PRDCT_AUTH
-		WHERE PRODUCT_SERIAL_NUMBER = #{product_serial_number}
-	</select>
-	
-	<insert id="insIotProdtAuth" parameterType="hashmap">
-		INSERT INTO TB_IOT_PRDCT_AUTH
-		SET PRODUCT_SERIAL_NUMBER = #{product_serial_number}
-			<if test="auth_yn != null and auth_yn != ''">
-				, AUTH_YN = #{auth_yn}
-			</if>
-			<if test="use_yn != null and use_yn != ''">
-				, USE_YN = #{use_yn}
-			</if>
-				, MOD_DATE = NOW()
-				, REG_DATE = NOW()
-	</insert>
-	
-	<select id="selKepProdtAuth" parameterType="hashmap" resultType="hashmap">
-		SELECT * FROM TB_KEPCO_API_AUTH
-		WHERE KEPCO_API_KEY = #{kepco_api_key}
-	</select>
-	
-	<insert id="insKepProdtAuth" parameterType="hashmap">
-		INSERT INTO TB_KEPCO_API_AUTH
-		SET KEPCO_API_KEY = #{kepco_api_key}
-			<if test="auth_yn != null and auth_yn != ''">
-				, AUTH_YN = #{auth_yn}
-			</if>
-				, MOD_DATE = NOW()
-				, REG_DATE = NOW()
-	</insert>
-	
-	<select id="selMsgInfo" parameterType="hashmap" resultType="hashmap">
-		SELECT * FROM TB_MSG_INFO
-		WHERE MSG_CODE = #{msg_code}
-	</select>
-	
-	<insert id="insTermsCond" parameterType="hashmap">
-		INSERT INTO TB_TERMS_COND
-		SET TERMS_CODE = #{terms_code}
-			,TERMS_VERSION = #{terms_version}
-		<if test="customer_link_number != null and customer_link_number != ''">
-			,CUSTOMER_LINK_NUMBER = #{customer_link_number}
-		</if>
-		<if test="terms_cont != null and terms_cont != ''">	
-			,TERMS_CONT = #{TERMS_CONT}
-		</if>
-		<if test="agrtr_cndtn_yn != null and agrtr_cndtn_yn != ''">	
-			,AGRTR_CNDTN_YN = #{AGRTR_CNDTN_YN}
-		</if>
-		<if test="use_yn != null and use_yn != ''">	
-			,USE_YN = #{USE_YN}
-		</if>	
-			,MOD_DATE = NOW()	
-			,REG_DATE = NOW()
-	</insert>
-	
-	<select id="selSysInfo" parameterType="hashmap" resultType="hashmap">
-		SELECT * FROM TB_SYS_INFO
-		WHERE CUSTOMER_LINK_NUMBER = #{customer_link_number}	
-	</select>
 	
 	<update id="updSysInfo" parameterType="hashmap">
 		UPDATE TB_SYS_INFO SET
@@ -296,81 +372,4 @@
 			</if>
 		WHERE CUSTOMER_LINK_NUMBER = #{customer_link_number}	
 	</update>
-	
-	<insert id="insSysInfo" parameterType="hashmap">
-		INSERT INTO TB_SYS_INFO SET
-				CUSTOMER_LINK_NUMBER = #{customer_link_number}	
-			<if test="pwr_svn_trg != null">
-				, PWR_SVN_TRG = #{pwr_svn_trg}	
-			</if>
-			<if test="gas_svn_trg != null">
-				, GAS_SVN_TRG = #{gas_svn_trg}	
-			</if>
-			<if test="wtr_svn_trg != null">
-				, WTR_SVN_TRG = #{wtr_svn_trg}	
-			</if>
-			<if test="alarm_use_yn != null and alarm_use_yn != ''">
-				, ALARM_USE_YN = #{alarm_use_yn}	
-			</if>
-			<if test="alarm_sound_yn != null and use_yn != ''">
-				, ALARM_SOUND_YN = #{alarm_sound_yn}	
-			</if>
-			<if test="alarm_vbrtn_yn != null and alarm_vbrtn_yn != ''">
-				, ALARM_VBRTN_YN = #{alarm_vbrtn_yn}	
-			</if>
-			<if test="alarm_optm_yn != null and alarm_optm_yn != ''">
-				, ALARM_OPTM_YN = #{alarm_optm_yn}	
-			</if>
-			<if test="use_yn != null and use_yn != ''">
-				, USE_YN = #{use_yn}	
-			</if>
-			<if test="tmp != null">
-				, TMP = #{tmp}	
-			</if>
-			<if test="tmp2 != null">
-				, TMP2 = #{tmp2}	
-			</if>
-			<if test="tmp3 != null">
-				, TMP3 = #{tmp3}	
-			</if>
-			<if test="tmp4 != null">
-				, TMP4 = #{tmp4}	
-			</if>
-			<if test="tmp5 != null">
-				, TMP5 = #{tmp5}	
-			</if>
-			<if test="tmp6 != null and tmp6 != ''">
-				, TMP6 = #{tmp6}	
-			</if>
-			<if test="tmp7 != null and tmp7 != ''">
-				, TMP7 = #{tmp7}	
-			</if>
-			<if test="tmp8 != null and tmp8 != ''">
-				, TMP8 = #{tmp8}	
-			</if>
-			<if test="tmp9 != null and tmp9 != ''">
-				, TMP9 = #{tmp9}
-			</if>
-			<if test="tmp10 != null and tmp10 != ''">
-				, TMP10 = #{tmp10}
-			</if>
-			, REG_DATE = NOW()	
-			, MOD_DATE = NOW()
-	</insert>
-	
-	<select id="selInputData" parameterType="hashmap" resultType="hashmap">
-	SELECT * FROM TB_INPUT_DATA_2023
-	WHERE PRODUCT_SERIAL_NUMBER = #{product_serial_number}
-	</select>
-	
-	<select id="selOutputData" parameterType="hashmap" resultType="hashmap">
-		SELECT * FROM TB_OUTPUT_DATA_2023
-		WHERE CUSTOMER_LINK_NUMBER = #{customer_link_number} AND DATE_TIME=CONCAT(#{date},' ',#{time})
-	</select>
-	
-	<select id="selOutputStatData" parameterType="hashmap" resultType="hashmap">
-		SELECT * FROM TB_OUTPUT_STAT_DATA_2023
-		WHERE CUSTOMER_LINK_NUMBER = #{customer_link_number}
-	</select>
-	
 </mapper>

@@ -6,7 +6,6 @@ import java.util.Map;
 import com.google.gson.Gson;
 
 public class SolarmyException extends Exception{
-	private static final String headerKey = "";
 	
 	private String messageCode = "";
 	private String messageText = "";
@@ -35,7 +34,6 @@ public class SolarmyException extends Exception{
 		exceptionMap.put("success","N");
 		exceptionMap.put("messageCode",messageCode);
 		exceptionMap.put("messageText",messageText);
-		
 		
 		return JsonUtil.MapToJson(exceptionMap);
 	}
