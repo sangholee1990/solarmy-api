@@ -24,18 +24,18 @@ logging:
 spring:
    config.activate.on-profile: solarmy
    datasource:
-      url: jdbc:mysql://localhost:3306/DMS05?serverTimezone=UTC&characterEncoding=UTF-8
-      username: root
-      password: shfwk!11
+      #url: jdbc:mysql://localhost:3306/DMS05?serverTimezone=UTC&characterEncoding=UTF-8
+      #username: root
+      #password: shfwk!11
       
       #url: jdbc:mysql://211.227.85.209:3306/DMS05?serverTimezone=UTC&characterEncoding=UTF-8
       #username: dms02user01
       #password: devel!
       
-      #url: jdbc:mysql://localhost:3306/DMS02?serverTimezone=UTC&characterEncoding=UTF-8
       #url: jdbc:mysql://223.130.134.136:3306/DMS02?serverTimezone=UTC&characterEncoding=UTF-8
-      #username: bdwide
-      #password: Bdwide365!@
+      url: jdbc:mysql://localhost:3306/DMS02?serverTimezone=UTC&characterEncoding=UTF-8
+      username: bdwide
+      password: Bdwide365!@
 
 server: 
    port: 9999

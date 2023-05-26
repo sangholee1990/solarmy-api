@@ -26,11 +26,20 @@ public class MainDAO {
 		this.sqlSession = sqlSession;
 	}
 	
-	public Map<String, Object> selMemberTest(MemberVO vo) throws JSONException {
-		Map<String, Object> data = sqlSession.selectOne("selMember", vo);
+	public Map<String, Object> selMemberSocket(Map<String, Object> param) throws JSONException {
+		Map<String, Object> data = sqlSession.selectOne("selMember", param);
 		return data;
 	}
 	
+	public int insMemberSocket(Map<String, Object> param) throws JSONException {
+		return sqlSession.insert("insMember", param);
+	}
+	
+	public int updMemberSocket(Map<String, Object> param) throws JSONException {
+		return sqlSession.update("updMember", param);
+	}
+	
+	/*************************************************************/
 	public Map<String, Object> selMember(MemberVO vo) {
 		Map<String, Object> data = sqlSession.selectOne("selMember", vo);
 		return data;
