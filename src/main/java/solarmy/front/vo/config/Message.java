@@ -1,4 +1,4 @@
-package solarmy.front.vo;
+package solarmy.front.vo.config;
 
 import lombok.Getter;
 import lombok.Setter;
