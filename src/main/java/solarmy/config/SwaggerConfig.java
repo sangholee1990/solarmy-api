@@ -17,10 +17,10 @@ import java.util.List;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
-	@Bean
+    @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
-        		.apiInfo(apiInfo())
+                .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("solarmy.front.controller"))
                 .paths(PathSelectors.ant("/api/**"))
@@ -28,9 +28,9 @@ public class SwaggerConfig {
                 .securityContexts(Arrays.asList(securityContext()))
                 .securitySchemes(Arrays.asList(apiKey()));
     }
-	
-	private ApiKey apiKey() {
-		return new ApiKey("Solarmy", "Authorization", "header");
+
+    private ApiKey apiKey() {
+        return new ApiKey("Solarmy", "Authorization", "header");
     }
 
     private ApiInfo apiInfo() {
@@ -43,7 +43,7 @@ public class SwaggerConfig {
                 .licenseUrl("")
                 .build();
     }
-    
+
     private SecurityContext securityContext() {
         return springfox
                 .documentation
