@@ -1,6 +1,7 @@
 package solarmy.front.vo;
 
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,9 +10,11 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(callSuper = false)
 public class CommCodeVO {
-	private String code;	
-	private String name;	
-	private String use_yn;	
-	private String mod_date;	
-	private String reg_date;	
+    @ApiModelProperty(value = "코드", required = false)
+    private String code;
+
+    private String name;
+    private String use_yn;
+    private String mod_date;
+    private String reg_date;
 }
