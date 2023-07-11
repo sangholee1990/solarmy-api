@@ -610,6 +610,14 @@ public class MainController extends MandatoryParamCheck {
                 return new ResponseEntity<String>(ret, HttpStatus.OK);
             }
 
+            JSONObject requestBody = new JSONObject(vo);
+
+            String[] sKey = {"product_serial_number"};
+            ret = this.isParamCheck(reqUrl, sKey, requestBody);
+            if (ret != null) {
+                return new ResponseEntity<String>(ret, HttpStatus.OK);
+            }
+
             int retVal = mainDao.insMember(vo);
             if (retVal < 1)
                 return new ResponseEntity<String>(SolarmyException.errorMessage("01", "어플리케이션 에러"), HttpStatus.OK);
@@ -779,6 +787,7 @@ public class MainController extends MandatoryParamCheck {
             }
 
             JSONObject requestBody = new JSONObject(vo);
+
 //            String[] sKey = {"customer_link_number", "sns_key"};
             String[] sKey = {"customer_link_number"};
             ret = this.isParamCheck(reqUrl, sKey, requestBody);

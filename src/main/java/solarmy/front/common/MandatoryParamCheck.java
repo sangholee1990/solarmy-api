@@ -35,8 +35,8 @@ public class MandatoryParamCheck {
             for (int i = 0; i < sKey.length; i++) {
                 if ("0".equals(requestBody.get(sKey[i]).toString()) || "null".equals(requestBody.get(sKey[i]).toString())) // 파라미터 값 공백
                 {
-                    log.info("[{}] {}", reqUrl, "[" + sKey[i] + "] " + "EMPTY");
-                    return SolarmyException.errorMessage("11", "PARAMETER ERROR");
+//                    log.info("[{}] {}", reqUrl, "[" + sKey[i] + "] " + "EMPTY");
+                    return SolarmyException.errorMessage("11", String.format("파라미터 에러 발생 (%s)", sKey[i]));
                 }
             }
         }

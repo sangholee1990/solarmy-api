@@ -2,7 +2,8 @@
 <configuration>
     <springProperty name="filePath" source="logging.file.path"/>
     <property name="defaultPattern" value="[%d{HH:mm:ss.SSS}] [%-5level] [%logger.%method:%line] - %msg%n"/>
-    <property name="levelConsole" value="info"/>
+<!--    <property name="levelConsole" value="info"/>-->
+    <property name="levelConsole" value="error"/>
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>

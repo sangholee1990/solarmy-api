@@ -19,6 +19,9 @@
         <if test="sns_key != null and sns_key != ''">
             AND SNS_KEY = #{sns_key}
         </if>
+        <if test="product_serial_number != null and product_serial_number != ''">
+            AND PRODUCT_SERIAL_NUMBER = #{product_serial_number}
+        </if>
     </select>
 
     <select id="selIotProdtAuth" parameterType="hashmap" resultType="hashmap">
@@ -187,8 +190,10 @@
     <insert id="insMember" parameterType="hashmap">
         INSERT INTO TB_MEMBER
         SET
-        KEPCO_API_KEY = #{kepco_api_key}
-        , PRODUCT_SERIAL_NUMBER = #{product_serial_number}
+        PRODUCT_SERIAL_NUMBER = #{product_serial_number}
+        <if test="kepco_api_key != null and kepco_api_key != ''">
+            , KEPCO_API_KEY = #{kepco_api_key}
+        </if>
         <if test="sns_id != null and sns_id != ''">
             ,SNS_ID = #{sns_id}
         </if>
@@ -196,7 +201,7 @@
             ,SNS_PWD = #{sns_pwd}
         </if>
         <if test="sns_key != null and sns_key != ''">
-            ,SNS_KEY = #{sns_key}
+            , SNS_KEY = #{sns_key}
         </if>
         <if test="sns_type != null and sns_type != ''">
             ,SNS_TYPE = #{sns_type}
@@ -362,6 +367,9 @@
         </if>
         <if test="sns_key != null and sns_key != ''">
             AND SNS_KEY = #{sns_key}
+        </if>
+        <if test="product_serial_number != null and product_serial_number != ''">
+            AND PRODUCT_SERIAL_NUMBER = #{product_serial_number}
         </if>
     </update>
 

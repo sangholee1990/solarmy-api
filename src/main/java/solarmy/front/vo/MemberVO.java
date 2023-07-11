@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(callSuper = false)
 public class MemberVO {
-    @ApiModelProperty(value = "고객 연동 번호", required = true)
+    @ApiModelProperty(value = "고객 연동 번호", required = false)
     private Integer customer_link_number;
 
      @ApiModelProperty(value = "제품 시리얼 번호", required = false)
