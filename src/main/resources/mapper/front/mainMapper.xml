@@ -22,6 +22,9 @@
         <if test="product_serial_number != null and product_serial_number != ''">
             AND PRODUCT_SERIAL_NUMBER = #{product_serial_number}
         </if>
+        <if test="kepco_api_key != null and kepco_api_key != ''">
+            AND KEPCO_API_KEY = #{kepco_api_key}
+        </if>
     </select>
 
     <select id="selIotProdtAuth" parameterType="hashmap" resultType="hashmap">
@@ -286,6 +289,9 @@
     <update id="updMember" parameterType="hashmap">
         UPDATE TB_MEMBER
         SET MOD_DATE = NOW()
+        <if test="sns_key != null and sns_key != ''">
+            , SNS_KEY = #{sns_key}
+        </if>
         <if test="kepco_api_key != null and kepco_api_key != ''">
             , KEPCO_API_KEY = #{kepco_api_key}
         </if>
@@ -364,12 +370,6 @@
         WHERE 1 = 1
         <if test="customer_link_number != null and customer_link_number != ''">
             AND CUSTOMER_LINK_NUMBER = #{customer_link_number}
-        </if>
-        <if test="sns_key != null and sns_key != ''">
-            AND SNS_KEY = #{sns_key}
-        </if>
-        <if test="product_serial_number != null and product_serial_number != ''">
-            AND PRODUCT_SERIAL_NUMBER = #{product_serial_number}
         </if>
     </update>
 

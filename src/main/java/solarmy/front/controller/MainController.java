@@ -224,7 +224,8 @@ public class MainController extends MandatoryParamCheck {
 
             JSONObject requestBody = new JSONObject(vo);
 
-            String[] sKey = {"customer_link_number"};
+//            String[] sKey = {"customer_link_number"};
+            String[] sKey = {};
             ret = this.isParamCheck(reqUrl, sKey, requestBody);
             if (ret != null) {
                 return new ResponseEntity<String>(ret, HttpStatus.OK);
