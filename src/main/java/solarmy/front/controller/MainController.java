@@ -34,7 +34,7 @@ public class MainController extends ServiceHelper {
     @ApiOperation(value = "(조회) 회원정보", notes = "특정 조건에 맞는 정보를 조회합니다.")
     @GetMapping(value = "/api/sel-member")
     public ResponseEntity<String> selMember(HttpServletRequest request, @ModelAttribute MemberVO vo) throws Exception {
-        return selHelper(request, vo, mainDao::selMember, new String[]{});
+        return selHelper(request, vo, mainDao::selMember, new String[]{"customer_link_number"});
     }
 
     @ApiOperation(value = "(조회) 기상 외부 데이터", notes = "특정 조건에 맞는 정보를 조회합니다.")
