@@ -114,4 +114,11 @@ public class MainDAO {
         return sqlSession.insert("updTermsCond", vo);
     }
 
+    public Integer updKepProdtAuth(KepcoApiAuthVO vo) {
+        return sqlSession.insert("updKepProdtAuth", vo);
+    }
+
+    public Integer updIotProdtAuth(IotPrdctAuthVO vo) {
+        return sqlSession.insert("updIotProdtAuth", vo);
+    }
 }

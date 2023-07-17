@@ -459,4 +459,35 @@
             AND TERMS_CODE = #{terms_code}
         </if>
     </update>
+
+    <update id="updIotProdtAuth" parameterType="hashmap">
+        UPDATE TB_IOT_PRDCT_AUTH SET
+        MOD_DATE = NOW()
+        <if test="auth_yn != null and auth_yn != ''">
+            , AUTH_YN = #{auth_yn}
+        </if>
+        <if test="use_yn != null and use_yn != ''">
+            , USE_YN = #{use_yn}
+        </if>
+        WHERE 1 = 1
+        <if test="product_serial_number != null and product_serial_number != ''">
+            AND PRODUCT_SERIAL_NUMBER = #{product_serial_number}
+        </if>
+    </update>
+
+    <update id="updKepProdtAuth" parameterType="hashmap">
+        UPDATE TB_KEPCO_API_AUTH SET
+        MOD_DATE = NOW()
+        <if test="auth_yn != null and auth_yn != ''">
+            , AUTH_YN = #{auth_yn}
+        </if>
+        <if test="use_yn != null and use_yn != ''">
+            , USE_YN = #{use_yn}
+        </if>
+        WHERE 1 = 1
+        <if test="kepco_api_key != null and kepco_api_key != ''">
+            AND KEPCO_API_KEY = #{kepco_api_key}
+        </if>
+    </update>
+
 </mapper>
