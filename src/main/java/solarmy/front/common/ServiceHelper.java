@@ -99,7 +99,7 @@ public class ServiceHelper {
         }
     }
 
-    protected <T> ResponseEntity<String> mergeHelper(HttpServletRequest request, T vo, Function<T, Integer> daoFunction, String... sKey) throws Exception {
+    protected <T> ResponseEntity<String> mergeHelper(HttpServletRequest request, T vo, Function<T, Integer> daoFunction, String[] sKey) throws Exception {
 
         String ret;
 

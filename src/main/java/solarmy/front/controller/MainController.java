@@ -112,30 +112,30 @@ public class MainController extends ServiceHelper {
     @ApiOperation(value = "(수정) 한전API 제품 인증", notes = "한전API 제품 인증을 수정합니다.")
     @PutMapping(value = "/api/upd-kepProdtAuth")
     public ResponseEntity<String> updKepProdtAuth(HttpServletRequest request, @ModelAttribute KepcoApiAuthVO vo) throws Exception {
-        return mergeHelper(request, vo, mainDao::updKepProdtAuth, null);
+        return mergeHelper(request, vo, mainDao::updKepProdtAuth, new String[]{"kepco_api_key"});
     }
 
     @ApiOperation(value = "(수정) IOT 제품 인증", notes = "IOT 제품 인증을 수정합니다.")
     @PutMapping(value = "/api/upd-iotProdtAuth")
     public ResponseEntity<String> updIotProdtAuth(HttpServletRequest request, @ModelAttribute IotPrdctAuthVO vo) throws Exception {
-        return mergeHelper(request, vo, mainDao::updIotProdtAuth, null);
+        return mergeHelper(request, vo, mainDao::updIotProdtAuth, new String[]{"product_serial_number"});
     }
 
     @ApiOperation(value = "(수정) 회원정보", notes = "customer_link_number를 이용하여 회원정보를 수정합니다.")
     @PutMapping(value = "/api/upd-member")
     public ResponseEntity<String> updMember(HttpServletRequest request, @ModelAttribute MemberVO vo) throws Exception {
-        return mergeHelper(request, vo, mainDao::updMember, "customer_link_number");
+        return mergeHelper(request, vo, mainDao::updMember, new String[]{"customer_link_number"});
     }
 
     @ApiOperation(value = "(수정) 시스템 정보", notes = "customer_link_number를 이용하여 시스템 정보를 수정합니다.")
     @PutMapping(value = "/api/upd-sysInfo")
     public ResponseEntity<String> updSysInfo(HttpServletRequest request, @ModelAttribute SysInfoVO vo) throws Exception {
-        return mergeHelper(request, vo, mainDao::updSysInfo, "customer_link_number");
+        return mergeHelper(request, vo, mainDao::updSysInfo, new String[]{"customer_link_number"});
     }
 
     @ApiOperation(value = "(수정) 약관 동의", notes = "customer_link_number를 이용하여 약관 동의를 수정합니다.")
     @PutMapping(value = "/api/upd-termsCond")
     public ResponseEntity<String> updTermsCond(HttpServletRequest request, @ModelAttribute TermsCondVO vo) throws Exception {
-        return mergeHelper(request, vo, mainDao::updTermsCond, "customer_link_number");
+        return mergeHelper(request, vo, mainDao::updTermsCond, new String[]{"customer_link_number"});
     }
 }
