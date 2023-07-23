@@ -34,15 +34,11 @@ spring:
    config.activate.on-profile: solarmy
    datasource:
     #로컬DB
-      #url: jdbc:mysql://localhost:3306/DMS05?serverTimezone=UTC&characterEncoding=UTF-8
-      #username: root
-      #password: shfwk!11
-    #테스트DB
-      #url: jdbc:mysql://211.227.85.209:3306/DMS05?serverTimezone=UTC&characterEncoding=UTF-8
-      #username: dms02user01
-      #password: devel!
-    #운영DB
 #      url: jdbc:mysql://223.130.134.136:3306/DMS02?serverTimezone=UTC&characterEncoding=UTF-8
+#      username: bdwide
+#      password: Bdwide365!@
+
+    #운영DB
       url: jdbc:mysql://localhost:3306/DMS02?serverTimezone=UTC&characterEncoding=UTF-8
       username: bdwide
       password: Bdwide365!@
