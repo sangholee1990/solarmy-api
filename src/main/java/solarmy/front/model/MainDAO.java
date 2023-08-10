@@ -78,7 +78,6 @@ public class MainDAO {
         return sqlSession.selectList("selOutputStatData", vo);
     }
 
-
     @Transactional
     public int insIotProdtAuth(IotPrdctAuthVO vo) {
         return sqlSession.insert("insIotProdtAuth", vo);
@@ -114,10 +113,12 @@ public class MainDAO {
         return sqlSession.insert("updTermsCond", vo);
     }
 
+    @Transactional
     public Integer updKepProdtAuth(KepcoApiAuthVO vo) {
         return sqlSession.insert("updKepProdtAuth", vo);
     }
 
+    @Transactional
     public Integer updIotProdtAuth(IotPrdctAuthVO vo) {
         return sqlSession.insert("updIotProdtAuth", vo);
     }
