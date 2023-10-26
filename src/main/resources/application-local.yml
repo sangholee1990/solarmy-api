@@ -11,9 +11,9 @@ spring:
       restart:
          enabled: true
 
-   config:
-      activate:
-         on-profile: local
+#   config:
+#      activate:
+#         on-profile: local
 
    datasource:
       driver-class-name: com.mysql.cj.jdbc.Driver
